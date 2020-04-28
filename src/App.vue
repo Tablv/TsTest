@@ -1,19 +1,38 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <my-input
+      ref="myInput"
+      type="text"
+      v-model="message"
+      :clearable="true"
+      placeholder="请输入内容"
+      >
+      <div slot="prepend">搜索</div>
+      <div slot="append" @click="handleClick">点击</div>
+      </my-input>
+      <!-- :disabled="true" -->
+    <button @click="handleClick">点击</button>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import MyInput from './components/MyInput'
 export default {
-  name: 'app',
   components: {
-    HelloWorld
+    MyInput
+  },
+  data() {
+    return {
+      message: ''
+    }
+  },
+  methods: {
+    handleClick() {
+      alert(this.message)
+    }
   }
 }
+
 </script>
 
 <style>
